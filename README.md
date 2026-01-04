@@ -92,3 +92,18 @@ npm run test
 # Tests E2E (Nécessite Postgres lancé sur le port 5433)
 npm run test:e2e
 ```
+
+---
+
+## 📈 Passage en Production (Scaling)
+
+Bien que la solution actuelle utilise `EventEmitter2` (asynchrone et non-bloquant), une architecture de production à grande échelle bénéficierait de **BullMQ** (Redis) pour garantir qu'aucune notification ne soit perdue en cas de crash serveur.
+
+La logique BullMQ est déjà préparée (en commentaire) dans le code :
+1.  **Dependencies** : `npm install @nestjs/bull bull`
+2.  **Infrastructure** : Décommentez le service `redis` dans `docker-compose.yaml`.
+3.  **Code** : Décommentez les blocs BullMQ dans :
+    - `backend/src/app.module.ts` (Configuration globale Redis)
+    - `backend/src/notifications/notifications.module.ts` (Enregistrement de la queue)
+    - `backend/src/notifications/notifications.processor.ts` (Traitement du job)
+    - `backend/src/likes/likes.service.ts` (Ajout du job à la queue)

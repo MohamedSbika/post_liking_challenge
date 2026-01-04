@@ -1,7 +1,22 @@
 import { Module } from '@nestjs/common';
 import { NotificationsService } from './notifications.service';
+/* 
+import { BullModule } from '@nestjs/bull';
+import { NotificationsProcessor } from './notifications.processor'; 
+*/
 
 @Module({
-  providers: [NotificationsService],
+    /*
+    imports: [
+      BullModule.registerQueue({
+        name: 'notifications',
+      }),
+    ],
+    */
+    providers: [
+        NotificationsService,
+        /* NotificationsProcessor */
+    ],
+    /* exports: [BullModule] */
 })
-export class NotificationsModule {}
+export class NotificationsModule { }

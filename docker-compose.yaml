@@ -34,6 +34,14 @@ services:
     networks:
       - debook-network
 
+#   redis:
+#     image: redis:7-alpine
+#     container_name: debook-redis
+#     ports:
+#       - "6379:6379"
+#     networks:
+#       - debook-network
+
 networks:
   debook-network:
     driver: bridge
