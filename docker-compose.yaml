@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: debook-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: debook
+      POSTGRES_PASSWORD: debook
+      POSTGRES_DB: debook
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - debook-network
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: debook-api
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: debook
+      DB_PASSWORD: debook
+      DB_NAME: debook
+      PORT: 3000
+    depends_on:
+      - postgres
+    networks:
+      - debook-network
+
+networks:
+  debook-network:
+    driver: bridge
+
+volumes:
+  pgdata:

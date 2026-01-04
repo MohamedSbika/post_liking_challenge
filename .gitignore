@@ -1,0 +1,39 @@
+# Compiled output
+/dist
+/node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# NestJS
+/backend/node_modules
+/backend/dist
+/backend/coverage
+/backend/.env
+
+# Docker
+.docker
+docker-compose.override.yml
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
